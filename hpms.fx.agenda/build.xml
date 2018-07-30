@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="project" default="jar">
+   <taskdef
+      resource ="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
+      classpath="/home/aubin/Dev/checkstyle-8.11.jar" />
+   <property name="BUILD" value="build" />
+   <target name="clean">
+      <delete dir="${BUILD}" />
+   </target>
+   <target name="javac">
+      <mkdir dir="${BUILD}" />
+      <javac
+         source           ="1.9"
+         target           ="1.9"
+         debug            ="true"
+         debuglevel       ="lines,vars,source"
+         destdir          ="${BUILD}"
+         srcdir           ="src"
+         includeantruntime="false" />
+   </target>
+   <target name="jar" depends="javac">
+      <copy todir="${BUILD}">
+         <fileset
+            dir     ="src"
+            includes="**/*.fxml,**/*.css,**/*.jpg" />
+      </copy>
+      <delete dir="${BUILD}/hpms/fx/agenda/tests" />
+      <jar basedir="build" destfile="hpms.fx.agenda.jar" />
+   </target>
+   <target name="javadoc">
+      <delete dir="javadoc" />
+      <javadoc
+         sourcepath         ="src"
+         destdir            ="javadoc"
+         access             ="public"
+         link               ="https://docs.oracle.com/javase/9/docs/api/"
+         failonerror        ="true"
+         package            ="hpms.fx.agenda"
+         excludepackagenames="hpms.fx.agenda.tests">
+         <arg value="-html5" />
+      </javadoc>
+   </target>
+</project>

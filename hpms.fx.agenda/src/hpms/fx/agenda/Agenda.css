@@ -1,0 +1,16 @@
+.table-row-cell {
+   -fx-font-family: nyala,Tahoma,Arial,Helvetica,sans-serif;   
+   -fx-font-size  : 11px;  
+}
+.time {
+   -fx-alignment  : center-right;
+   -fx-font-weight: bold;
+   -fx-font-family: nyala,Tahoma,Arial,Helvetica,sans-serif;   
+   -fx-font-size  : 12px;  
+}
+#_week {
+   -fx-alignment  : center; 
+   -fx-font-weight: bold;
+   -fx-font-family: nyala,Tahoma,Arial,Helvetica,sans-serif;   
+   -fx-font-size  : 12px;
+}

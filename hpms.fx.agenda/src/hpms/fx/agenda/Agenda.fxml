@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+   fx:controller="hpms.fx.agenda.AgendaController"
+   stylesheets="@Agenda.css">
+   <padding>
+      <Insets topRightBottomLeft="4.0" />
+   </padding>
+   <top>
+      <HBox spacing="8.0">
+         <Button text="&lt;==" onAction="#previousWeek" />
+         <Label fx:id="_week" HBox.hgrow="ALWAYS">
+            <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+            <maxHeight><Double fx:constant="MAX_VALUE"/></maxHeight>
+         </Label>
+         <Button text="==&gt;" onAction="#nextWeek" />
+      </HBox>
+   </top>
+   <center>
+      <TableView fx:id="_rows" onMouseClicked="#tblClicked">
+         <columns>
+            <TableColumn text="" prefWidth="50" styleClass="time">
+               <cellValueFactory><PropertyValueFactory property="time" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Lundi"    prefWidth="140">
+               <cellValueFactory><PropertyValueFactory property="monday" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Mardi"    prefWidth="140">
+               <cellValueFactory><PropertyValueFactory property="tuesday" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Mercredi" prefWidth="140">
+               <cellValueFactory><PropertyValueFactory property="wednesday" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Jeudi"    prefWidth="140">
+               <cellValueFactory><PropertyValueFactory property="thursday" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Vendredi" prefWidth="140">
+               <cellValueFactory><PropertyValueFactory property="friday" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Samedi"   prefWidth="140">
+               <cellValueFactory><PropertyValueFactory property="saturday" /></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Dimanche" prefWidth="140">
+               <cellValueFactory><PropertyValueFactory property="sunday" /></cellValueFactory>
+            </TableColumn>
+         </columns>    
+      </TableView>
+   </center>
+   <bottom>
+      <Label fx:id="_statusBar" text="">
+         <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+      </Label>
+   </bottom>
+</BorderPane>

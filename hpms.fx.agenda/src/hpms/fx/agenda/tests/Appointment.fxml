@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml"
+   fx:controller="hpms.fx.agenda.tests.AppointmentController"
+   alignment="center" hgap="4" vgap="4">
+   <padding>
+      <Insets topRightBottomLeft="4" />
+   </padding>
+
+   <Label text="Le" alignment="center_right"
+      GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+   </Label>
+   <DatePicker fx:id="_date" prefWidth="120"
+      GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+   <Label text="De" alignment="center_right"
+      GridPane.columnIndex="0" GridPane.rowIndex="2">
+      <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+   </Label>
+   <HBox spacing="4.0"
+      GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <TextField  fx:id="_fromHour"   promptText="Heure"  prefWidth="40" />
+      <TextField  fx:id="_fromMinute" promptText="Minute" prefWidth="40" />
+   </HBox>
+
+   <Label text="À" alignment="center_right"
+      GridPane.columnIndex="0" GridPane.rowIndex="3">
+      <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+   </Label>
+   <HBox spacing="4.0"
+      GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <TextField  fx:id="_toHour"   promptText="Heure"  prefWidth="40" />
+      <TextField  fx:id="_toMinute" promptText="Minute" prefWidth="40" />
+   </HBox>
+
+   <Label text="Prénom" alignment="center_right"
+      GridPane.columnIndex="0" GridPane.rowIndex="4">
+      <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+   </Label>
+   <TextField fx:id="_forname"
+      GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.hgrow="ALWAYS">
+      <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+   </TextField>
+
+   <Label text="Nom" alignment="center_right"
+      GridPane.columnIndex="0" GridPane.rowIndex="5">
+      <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+   </Label>
+   <TextField fx:id="_name"
+      GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.hgrow="ALWAYS">
+      <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+   </TextField>
+   <Button fx:id="_proposalBtn" text="Entrez nom ou prénom" onAction="#useCompletion"
+      GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"
+      GridPane.rowSpan="2">
+      <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+      <maxHeight><Double fx:constant="MAX_VALUE"/></maxHeight>
+   </Button>
+
+   <Label text="Méthode"
+      GridPane.columnIndex="0" GridPane.rowIndex="6" alignment="center_right">
+      <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+   </Label>
+   <ComboBox fx:id="_work"
+      GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+   <Label text="Commentaire" alignment="center_right"
+      GridPane.columnIndex="0" GridPane.rowIndex="7">
+      <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+   </Label>
+   <TextField fx:id="_comment"
+      GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.hgrow="ALWAYS">
+      <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+   </TextField>
+
+   <HBox spacing="8.0" alignment="CENTER_RIGHT"
+      GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.halignment="RIGHT">
+      <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+      <Button fx:id="_addOrUpdateBtn" text="Ajouter" onAction="#add">
+         <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+      </Button>
+      <Button fx:id="_deleteBtn" text="Supprimer" onAction="#remove">
+         <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+      </Button>
+      <Button text="Annuler" onAction="#cancel">
+         <maxWidth><Double fx:constant="MAX_VALUE"/></maxWidth>
+      </Button>
+   </HBox>
+
+</GridPane>
