@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project name="project" default="jar">
-   <taskdef
-      resource ="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
-      classpath="/home/aubin/Dev/checkstyle-8.11.jar" />
-   <property name="BUILD" value="build" />
+<project name="hpms.fx.agenda" default="jars">
+   
+   <property name="BUILD"   value="build" />
+   <property name="VERSION" value="1.1.0" />
+
    <target name="clean">
       <delete dir="${BUILD}" />
    </target>
+   
    <target name="javac">
       <mkdir dir="${BUILD}" />
       <javac
@@ -18,6 +19,22 @@
          srcdir           ="src"
          includeantruntime="false" />
    </target>
+
+   <target name="javadoc">
+      <delete dir="javadoc" />
+      <javadoc
+         sourcepath         ="src"
+         destdir            ="javadoc"
+         access             ="protected"
+         link               ="https://docs.oracle.com/javase/9/docs/api/"
+         failonerror        ="true"
+         use                ="true"
+         excludepackagenames="hpms.fx.agenda.tests"
+         doctitle           ="hpms.fx.agenda ${VERSION}">
+         <arg value="-html5" />
+      </javadoc>
+   </target>
+   
    <target name="jar" depends="javac">
       <copy todir="${BUILD}">
          <fileset
@@ -27,17 +44,14 @@
       <delete dir="${BUILD}/hpms/fx/agenda/tests" />
       <jar basedir="build" destfile="hpms.fx.agenda.jar" />
    </target>
-   <target name="javadoc">
-      <delete dir="javadoc" />
-      <javadoc
-         sourcepath         ="src"
-         destdir            ="javadoc"
-         access             ="public"
-         link               ="https://docs.oracle.com/javase/9/docs/api/"
-         failonerror        ="true"
-         package            ="hpms.fx.agenda"
-         excludepackagenames="hpms.fx.agenda.tests">
-         <arg value="-html5" />
-      </javadoc>
+   
+   <target name="jar-src" depends="javac">
+      <jar basedir="src" destfile="hpms.fx.agenda-src.jar" />
    </target>
+   
+   <target name="jar-doc" depends="javadoc">
+      <jar basedir="javadoc" destfile="hpms.fx.agenda-doc.jar" />
+   </target>
+
+   <target name="jars" depends="jar,jar-doc,jar-src" />
 </project>

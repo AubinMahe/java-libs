@@ -30,6 +30,7 @@ public final class AgendaController<T extends AbstractAppointment> {
    private static final int ROW_HEIGHT        = 36;
 
    /**
+    * Returns the first day of the week of the provided day.
     * @param date a date.
     * @return the first day of the week of the provided day.
     */
@@ -47,6 +48,9 @@ public final class AgendaController<T extends AbstractAppointment> {
    @FXML private TableView<AgendaRow> _rows;
    @FXML private Label                _statusBar;
 
+   /**
+    * Called by javafx framework, setup the table view.
+    */
    @FXML
    public void initialize() {
       _rows.fixedCellSizeProperty().set( ROW_HEIGHT );
@@ -56,6 +60,7 @@ public final class AgendaController<T extends AbstractAppointment> {
    /**
     * Connect the controller to the model.
     * @param model the appointment's model.
+    * @see AbstractAppointmentsModel
     */
    public void setAppointmentModel( IAppointmentsModel<T> model ) {
       _model = model;
@@ -70,7 +75,7 @@ public final class AgendaController<T extends AbstractAppointment> {
    }
 
    /**
-    * A user defined appointment editor, often a {@link Stage} offering a form
+    * Connect the appointment editor, often a {@link Stage} offering a form
     * of inputs.
     * @param editor a user defined appointment editor.
     * @see DefaultAppointmentEditor
@@ -108,16 +113,29 @@ public final class AgendaController<T extends AbstractAppointment> {
       _statusBar.setText( _model.getAgendaStatus( _current ));
    }
 
+   /**
+    * Called by JavaFx framework when the user press the <code>"&lt;=="</code>
+    * button
+    */
    @FXML
    public void previousWeek() {
       setWeek( _current.minus( 7, ChronoUnit.DAYS ));
    }
 
+   /**
+    * Called by JavaFx framework when the user press the <code>"==&gt;"</code>
+    * button.
+    */
    @FXML
    public void nextWeek() {
       setWeek( _current.plus( 7, ChronoUnit.DAYS ));
    }
 
+   /**
+    * Called by JavaFx framework when the user click on a cell in the table
+    * view, shows the appointment editor.
+    * @param e not used
+    */
    @FXML
    public void tblClicked( @SuppressWarnings("unused") MouseEvent e ) {
       @SuppressWarnings("rawtypes")

@@ -11,21 +11,25 @@ import java.util.Set;
 public interface IAppointmentsModel<T extends AbstractAppointment> {
 
    /**
+    * Returns the first appointment of a day.
     * @return the first appointment of a day.
     */
    int getFirstHour();
 
    /**
+    * Returns the last appointment of a day.
     * @return the last appointment of a day.
     */
    int getLastHour();
 
    /**
+    * Adds an appointment.
     * @param appointment the appointment to add.
     */
    void addAppointment( T appointment );
 
    /**
+    * Removes an appointment.
     * @param appointment the appointment to remove.
     */
    void removeAppointment( T appointment );
@@ -40,6 +44,7 @@ public interface IAppointmentsModel<T extends AbstractAppointment> {
    void getAppointments( LocalDate from, LocalDate to, Set<T> appointments );
 
    /**
+    * Returns a single string to resume a whole week.
     * @param monday the first day of a week.
     * @return a single string to resume a whole week.
     */

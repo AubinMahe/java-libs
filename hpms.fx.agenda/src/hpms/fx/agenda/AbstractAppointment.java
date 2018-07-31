@@ -13,8 +13,8 @@ public abstract class AbstractAppointment {
 
    /**
     * Construct an appointment.
-    * @param from the beginning of the appointment.
-    * @param to the ending of the appointment.
+    * @param from the beginning of the appointment, must be before "to".
+    * @param to   the ending    of the appointment, must be after "from".
     */
    public AbstractAppointment( LocalDateTime from, LocalDateTime to ) {
       _from = from;
@@ -22,6 +22,7 @@ public abstract class AbstractAppointment {
    }
 
    /**
+    * Returns the beginning of the appointment.
     * @return the beginning of the appointment.
     */
    public LocalDateTime getFrom() {
@@ -37,6 +38,7 @@ public abstract class AbstractAppointment {
    }
 
    /**
+    * Returns the ending of the appointment.
     * @return the ending of the appointment.
     */
    public LocalDateTime getTo() {

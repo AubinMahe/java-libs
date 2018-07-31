@@ -1,2 +1,6 @@
 bin/
+build/
 javadoc/
+hpms.fx.agenda-doc.jar
+hpms.fx.agenda.jar
+hpms.fx.agenda-src.jar

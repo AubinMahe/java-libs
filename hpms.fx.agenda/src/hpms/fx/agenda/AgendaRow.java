@@ -8,9 +8,16 @@ import java.util.Map;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.TableView;
 
+/**
+ * This class is public for technical reasons, it's a row in the
+ * {@link TableView}, each cell is a one day after the preceding.
+ */
 public final class AgendaRow {
 
+   private final Map<DayOfWeek,
+      AbstractAppointment>      _appointments = new HashMap<>();
    private final StringProperty _time         = new SimpleStringProperty();
    private final StringProperty _monday       = new SimpleStringProperty();
    private final StringProperty _tuesday      = new SimpleStringProperty();
@@ -19,16 +26,22 @@ public final class AgendaRow {
    private final StringProperty _friday       = new SimpleStringProperty();
    private final StringProperty _saturday     = new SimpleStringProperty();
    private final StringProperty _sunday       = new SimpleStringProperty();
-   private final Map<
-      DayOfWeek, AbstractAppointment>   _appointments = new HashMap<>();
    private final LocalDateTime  _mondayDateTime;
 
+   /**
+    * Build a row of seven cells where each cell is one day after the preceding.
+    * Each non empty cell hold few word to resume an appointment.
+    * @param monday the date and time of the first day, Monday.
+    */
    public AgendaRow( LocalDateTime monday ) {
       _mondayDateTime = monday;
       _time.set( String.format( "%02d:%02d",
          monday.get( ChronoField.HOUR_OF_DAY ), monday.get( ChronoField.MINUTE_OF_HOUR )));
    }
 
+   /**
+    * Empties all cell of this row.
+    */
    public void reset() {
       _monday   .set( null );
       _tuesday  .set( null );
@@ -39,6 +52,11 @@ public final class AgendaRow {
       _sunday   .set( null );
    }
 
+   /**
+    * Associates an appointment to a cell of this row.
+    * @param appointment the appointment to associate.
+    * @see LocalDateTime#getDayOfWeek()
+    */
    public void setAppointment( AbstractAppointment appointment ) {
       final DayOfWeek dow = appointment.getFrom().getDayOfWeek();
       _appointments.put( dow, appointment );
