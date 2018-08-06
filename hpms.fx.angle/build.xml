@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="hpms.fx.angle" default="jars">
+
+   <property name="BUILD"   value="build" />
+   <property name="VERSION" value="1.0.0" />
+
+   <target name="clean">
+      <delete dir="${BUILD}" />
+   </target>
+
+   <target name="javac">
+      <mkdir dir="${BUILD}" />
+      <javac
+         source           ="1.9"
+         target           ="1.9"
+         debug            ="true"
+         debuglevel       ="lines,vars,source"
+         destdir          ="${BUILD}"
+         srcdir           ="src"
+         includeantruntime="false" />
+   </target>
+
+   <target name="javadoc">
+      <delete dir="javadoc" />
+      <javadoc
+         sourcepath         ="src"
+         destdir            ="javadoc"
+         access             ="protected"
+         link               ="https://docs.oracle.com/javase/9/docs/api/"
+         failonerror        ="true"
+         use                ="true"
+         excludepackagenames="hpms.fx.angle.tests"
+         doctitle           ="hpms.fx.angle ${VERSION}">
+         <arg value="-html5" />
+      </javadoc>
+   </target>
+
+   <target name="jar" depends="javac">
+      <copy todir="${BUILD}">
+         <fileset
+            dir     ="src"
+            includes="**/*.fxml,**/*.css,**/*.jpg" />
+      </copy>
+      <delete dir="${BUILD}/hpms/fx/angle/tests" />
+      <jar basedir="build" destfile="hpms.fx.angle.jar" />
+   </target>
+
+   <target name="jar-src" depends="javac">
+      <jar basedir="src" destfile="hpms.fx.angle-src.jar" />
+   </target>
+
+   <target name="jar-doc" depends="javadoc">
+      <jar basedir="javadoc" destfile="hpms.fx.angle-doc.jar" />
+   </target>
+
+   <target name="jars" depends="jar,jar-doc,jar-src" />
+
+   <target name="deploy-to-arduino" depends="jars">
+      <copy todir="../../../Arduino/arduino/hpms.app.arduinosim/lib">
+         <fileset
+            dir     ="."
+            includes="*.jar" />
+      </copy>
+   </target>
+
+</project>
